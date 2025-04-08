@@ -7,12 +7,12 @@ base_dir="$( cd -P "$( dirname "${0}" )" && pwd )"
 buildpack_dir="$( readlink -f "${base_dir}/.." )"
 tmp_dir="$( mktemp --directory --tmpdir="/tmp" --quiet "bp-XXXXXX" )"
 
-readonly build_dir
-readonly cache_dir
+#readonly build_dir
+#readonly cache_dir
 #readonly env_dir
-readonly base_dir
-readonly buildpack_dir
-readonly tmp_dir
+#readonly base_dir
+#readonly buildpack_dir
+#readonly tmp_dir
 
 # shellcheck disable=SC1091
 source "${buildpack_dir}/cmnlib.sh"
