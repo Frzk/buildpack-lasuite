@@ -39,7 +39,7 @@ then
     exit 20
 fi
 
-unset PROJECT_DIR
+mv "${build_dir}/src/frontend/.profile.d/"* "${build_dir}/.profile.d/"
 
 
 if ! cmn::bp::run \
@@ -51,6 +51,11 @@ then
     cmn::output::err "Failed to run Nginx buildpack. Aborting"
     exit 30
 fi
+
+PATH="${PATH}:\${HOME}/src/frontend/.scalingo/node/bin:\${HOME}/src/frontend/.scalingo/yarn/bin:\${HOME}/src/frontend/node_modules"
+
+export PATH
+
 
 
 exit 0
