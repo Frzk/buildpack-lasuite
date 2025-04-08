@@ -53,10 +53,8 @@ then
     exit 30
 fi
 
-PATH="${PATH}:\${HOME}/src/frontend/.scalingo/node/bin:\${HOME}/src/frontend/.scalingo/yarn/bin:\${HOME}/src/frontend/node_modules"
 
-export PATH
-
+cp "${buildpack_dir}/files/profile.d/010-docs.sh" "${build_dir}/.profile.d/"
 
 
 exit 0
