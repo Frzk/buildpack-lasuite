@@ -2,7 +2,7 @@
 
 build_dir="${1:-}"
 cache_dir="${2:-}"
-#env_dir="${3:-}"
+env_dir="${3:-}"
 base_dir="$( cd -P "$( dirname "${0}" )" && pwd )"
 buildpack_dir="$( readlink -f "${base_dir}/.." )"
 tmp_dir="$( mktemp --directory --tmpdir="/tmp" --quiet "bp-XXXXXX" )"
