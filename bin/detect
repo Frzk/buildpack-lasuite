@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "La Suite Numérique"
+exit 0

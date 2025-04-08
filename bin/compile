@@ -1,0 +1,62 @@
+#!/usr/bin/env zsh
+
+build_dir="${1:-}"
+cache_dir="${2:-}"
+#env_dir="${3:-}"
+base_dir="$( cd -P "$( dirname "${0}" )" && pwd )"
+buildpack_dir="$( readlink -f "${base_dir}/.." )"
+tmp_dir="$( mktemp --directory --tmpdir="/tmp" --quiet "bp-XXXXXX" )"
+
+readonly build_dir
+readonly cache_dir
+#readonly env_dir
+readonly base_dir
+readonly buildpack_dir
+readonly tmp_dir
+
+# shellcheck disable=SC1091
+source "${buildpack_dir}/cmnlib.sh"
+
+
+PROJECT_DIR="${buildpack_dir}/src/backend"
+export PROJECT_DIR
+
+if ! cmn::bp::run \
+    "https://github.com/Scalingo/python-buildpack" \
+    "${build_dir}" \
+    "${cache_dir}" \
+    "${env_dir}"
+then
+    cmn::output::err "Failed to run Python buildpack. Aborting"
+    exit 10
+fi
+
+
+PROJECT_DIR="${buildpack_dir}/src/frontend"
+export PROJECT_DIR
+
+if ! cmn::bp::run \
+    "https://github.com/Scalingo/nodejs-buildpack" \
+    "${build_dir}" \
+    "${cache_dir}" \
+    "${env_dir}"
+then
+    cmn::output::err "Failed to run Node.js buildpack. Aborting"
+    exit 20
+fi
+
+unset PROJECT_DIR
+
+
+if ! cmn::bp::run \
+    "https://github.com/Scalingo/nginx-buildpack" \
+    "${build_dir}" \
+    "${cache_dir}" \
+    "${env_dir}"
+then
+    cmn::output::err "Failed to run Nginx buildpack. Aborting"
+    exit 30
+fi
+
+
+exit 0
