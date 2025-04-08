@@ -39,6 +39,7 @@ then
     exit 20
 fi
 
+mkdir --parents "${build_dir}/.profile.d"
 mv "${build_dir}/src/frontend/.profile.d/"* "${build_dir}/.profile.d/"
 
 
