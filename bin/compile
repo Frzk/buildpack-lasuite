@@ -18,12 +18,9 @@ tmp_dir="$( mktemp --directory --tmpdir="/tmp" --quiet "bp-XXXXXX" )"
 source "${buildpack_dir}/cmnlib.sh"
 
 
-PROJECT_DIR="${buildpack_dir}/src/backend"
-export PROJECT_DIR
-
 if ! cmn::bp::run \
     "https://github.com/Scalingo/python-buildpack" \
-    "${build_dir}" \
+    "${build_dir}/src/backend" \
     "${cache_dir}" \
     "${env_dir}"
 then
@@ -32,12 +29,9 @@ then
 fi
 
 
-PROJECT_DIR="${buildpack_dir}/src/frontend"
-export PROJECT_DIR
-
 if ! cmn::bp::run \
     "https://github.com/Scalingo/nodejs-buildpack" \
-    "${build_dir}" \
+    "${build_dir}/src/frontend" \
     "${cache_dir}" \
     "${env_dir}"
 then
