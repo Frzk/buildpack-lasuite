@@ -2,5 +2,5 @@
 
 cat <<EOF
 default_process_types:
-  web: bin/run
+  web: yarn app:start
 EOF

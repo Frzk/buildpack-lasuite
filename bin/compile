@@ -43,15 +43,15 @@ mkdir --parents "${build_dir}/.profile.d"
 mv "${build_dir}/src/frontend/.profile.d/"* "${build_dir}/.profile.d/"
 
 
-if ! cmn::bp::run \
-    "https://github.com/Scalingo/nginx-buildpack" \
-    "${build_dir}" \
-    "${cache_dir}" \
-    "${env_dir}"
-then
-    cmn::output::err "Failed to run Nginx buildpack. Aborting"
-    exit 30
-fi
+#if ! cmn::bp::run \
+#    "https://github.com/Scalingo/nginx-buildpack" \
+#    "${build_dir}" \
+#    "${cache_dir}" \
+#    "${env_dir}"
+#then
+#    cmn::output::err "Failed to run Nginx buildpack. Aborting"
+#    exit 30
+#fi
 
 
 cp "${buildpack_dir}/files/profile.d/010-docs.sh" "${build_dir}/.profile.d/"

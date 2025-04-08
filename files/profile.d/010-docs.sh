@@ -8,6 +8,10 @@ PATH="${PATH}:${HOME}/src/frontend/node_modules"
 PATH="${PATH}:${HOME}/src/backend/.scalingo/python/bin/"
 export PATH
 
+NODE_PATH="${HOME}/src/frontend/node_modules"
+export NODE_PATH
+
+
 PYTHONUNBUFFERED="true"
 export PYTHONUNBUFFERED
 
