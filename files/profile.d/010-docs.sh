@@ -1,25 +1,30 @@
 #!/usr/bin/env bash
 
 
-PATH="${PATH}:${HOME}/src/frontend/.scalingo/node/bin"
-PATH="${PATH}:${HOME}/src/frontend/.scalingo/yarn/bin"
-PATH="${PATH}:${HOME}/src/frontend/node_modules"
+PATH="${PATH}:${HOME}/.scalingo/node/bin"
+PATH="${PATH}:${HOME}/.scalingo/yarn/bin"
+PATH="${PATH}:${HOME}/node_modules"
 
-PATH="${PATH}:${HOME}/src/backend/.scalingo/python/bin/"
+PATH="${PATH}:${HOME}/.scalingo/python/bin/"
 export PATH
 
-NODE_PATH="${HOME}/src/frontend/node_modules"
+NODE_PATH="${HOME}/node_modules"
 export NODE_PATH
 
 
 PYTHONUNBUFFERED="true"
 export PYTHONUNBUFFERED
 
-PYTHONHOME="${HOME}/src/backend/.scalingo/python"
+PYTHONHOME="${HOME}/.scalingo/python"
 export PYTHONHOME
 
-LIBRARY_PATH="${LIBRARY_PATH:+:${LIBRARY_PATH}}:${HOME}/src/backend/.scalingo/python/lib"
+#FIXME
+LIBRARY_PATH="${LIBRARY_PATH:+:${LIBRARY_PATH}}:${HOME}/.scalingo/python/lib"
 export LIBRARY_PATH
 
-LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:${HOME}/src/backend/.scalingo/python/lib"
+#FIXME
+LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}:${HOME}/.scalingo/python/lib"
 export LD_LIBRARY_PATH
+
+#FIXME
+# gunicorn as `/app/.scalingo/python/bin/python` as shebang, which is obv. wrong.

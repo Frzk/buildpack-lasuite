@@ -17,10 +17,13 @@ tmp_dir="$( mktemp --directory --tmpdir="/tmp" --quiet "bp-XXXXXX" )"
 # shellcheck disable=SC1091
 source "${buildpack_dir}/cmnlib.sh"
 
+mv "${build_dir}/src/backend/"* "${build_dir}/"
+mv "${build_dir}/src/frontend/"* "${build_dir}/"
+
 
 if ! cmn::bp::run \
     "https://github.com/Scalingo/python-buildpack" \
-    "${build_dir}/src/backend" \
+    "${build_dir}" \
     "${cache_dir}" \
     "${env_dir}"
 then
@@ -31,7 +34,7 @@ fi
 
 if ! cmn::bp::run \
     "https://github.com/Scalingo/nodejs-buildpack" \
-    "${build_dir}/src/frontend" \
+    "${build_dir}" \
     "${cache_dir}" \
     "${env_dir}"
 then
@@ -39,8 +42,8 @@ then
     exit 20
 fi
 
-mkdir --parents "${build_dir}/.profile.d"
-mv "${build_dir}/src/frontend/.profile.d/"* "${build_dir}/.profile.d/"
+#mkdir --parents "${build_dir}/.profile.d"
+#mv "${build_dir}/src/frontend/.profile.d/"* "${build_dir}/.profile.d/"
 
 
 #if ! cmn::bp::run \
